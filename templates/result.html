@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Result</title>
+    {% load staticfiles %}
+    <link href="{% static "css/bootstrap.css" %}"rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <ul class="pager">
+            {% if pagination.page_number > 1 %}
+            <li class="previous active">
+                {% else %}
+                <li class="previous disabled">
+            {% endif %}
+            <a href={{ previous_url }} aria-label="Previous">
+                <span aria-hidden="true">Previous</span>
+            </a>
+            </li>
+            {% if pagination.page_number < pagination.page_count %}
+            <li class="next active">
+                {% else %}
+                <li class="next disabled">
+            {% endif %}
+            <a href="{{ next_url }}" aria-label="Next">
+                <span aria-hidden="true">Next</span>
+            </a>
+            </li>
+        </ul>
+    </nav>
+    <div style="text-align: center">
+    <b>Displaying {{ pagination.page_size }} events!</b><br>
+    {% for event in events %}
+        <a href={{ event.url }}>{{ event.name.text }}</a><br>
+    {% endfor %}
+    </div>
+</body>
+</html>

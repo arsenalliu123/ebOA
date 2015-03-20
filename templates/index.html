@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Eventbrite API Test</title>
+</head>
+<body>
+<b>Choose 3 categories:</b>
+<form action="result" method="get">
+    {% for cat in categories %}
+  <input class="atmost" type="checkbox" name="prefer" value={{ cat.id }}> {{ cat.name }}<br>
+    {% endfor %}
+  <input class="button" type="submit" value="Submit!" disabled>
+</form>
+</body>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script>
+    var limit = 3;
+    $( document ).ready(function() {
+       if($(':checked').length == limit){
+           $('input.button').removeAttr('disabled');
+       }
+    });
+    $('input.atmost').on('change', function(evt) {
+        if($(this).siblings(':checked').length >= limit) {
+           this.checked = false;
+        }
+        if($(':checked').length == limit) {
+            $('input.button').removeAttr('disabled');
+        }
+        else{
+            $('input.button').attr('disabled',true);
+        }
+
+    });
+
+</script>
+</html>
