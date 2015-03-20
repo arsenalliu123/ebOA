@@ -10,22 +10,28 @@
     <nav>
         <ul class="pager">
             {% if pagination.page_number > 1 %}
-            <li class="previous active">
-                {% else %}
+                <li class="previous active">
+                    <a href={{ previous_url }} aria-label="Previous">
+                        <span aria-hidden="true">Previous</span>
+                    </a>
+                    {% else %}
                 <li class="previous disabled">
-            {% endif %}
-            <a href={{ previous_url }} aria-label="Previous">
+                <a href="#" aria-label="Previous">
                 <span aria-hidden="true">Previous</span>
-            </a>
+                </a>
+            {% endif %}
             </li>
             {% if pagination.page_number < pagination.page_count %}
-            <li class="next active">
-                {% else %}
+                <li class="next active">
+                    <a href="{{ next_url }}" aria-label="Next">
+                        <span aria-hidden="true">Next</span>
+                    </a>
+                    {% else %}
                 <li class="next disabled">
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">Next</span>
+                </a>
             {% endif %}
-            <a href="{{ next_url }}" aria-label="Next">
-                <span aria-hidden="true">Next</span>
-            </a>
             </li>
         </ul>
     </nav>
